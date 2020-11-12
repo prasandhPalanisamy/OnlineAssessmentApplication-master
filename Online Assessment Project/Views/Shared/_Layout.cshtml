@@ -1,0 +1,95 @@
+﻿@using System.Web.Optimization
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+
+    <script defer src="https://use.fontawesome.com/releases/v5.13.0/js/all.js"></script>
+    @Scripts.Render("~/Scripts/Bootstrap")
+    @Styles.Render("~/Styles/Bootstrap")
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand brand_icon" href="#">
+            <img src="~/Content/Images/Test.png" class="brand_img">
+            Brainly
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact admin</a>
+                </li>
+
+            </ul>
+
+
+
+            <ul class="navbar-nav ml-auto">
+                @if (HttpContext.Current.User.Identity.Name != null)
+                {
+
+                    <li class="nav-item dropdown icon_btn">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"><i class="fas fa-user"></i> @User.Identity.Name</span>
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Edit profile</a>
+                            <a class="dropdown-item" href="#">Change password</a>
+                            <a class="dropdown-item" href="/account/logout">Logout</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item">
+                        <a class="nav-link" href="/account/login">Login</a>
+                    </li>
+                }
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            @if (User.Identity.IsAuthenticated)
+            {
+                <div class="col-sm-4 col-lg-2 sideBar">
+                    <div class="list-group sideItem">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <i class="fas fa-home"></i> Dashboard
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-book"></i> Courses</a>
+                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-star"></i> Upcoming Tests</a>
+                        <a href="#" class="list-group-item list-group-item-action"><i class="fas fa-poll-h"></i> Result</a>
+                    </div>
+
+                </div>
+            }
+
+            <div class="col-sm-4 col-lg-10 login_page">
+                @RenderBody()
+                <b>@HttpContext.Current.User.Identity.Name</b>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+</html>

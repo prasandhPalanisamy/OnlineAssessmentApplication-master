@@ -1,0 +1,97 @@
+﻿@model Online_Assessment_Project.DomainModel.User
+@{
+    ViewBag.Title = "Create";
+}
+
+
+    <body class="Create">
+        
+
+           @using (Html.BeginForm("Create", "Account", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <table>
+
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.Name, "Name")
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(Model => Model.Name)
+                        </td>
+                        <td style="color:white">
+                            @Html.ValidationMessageFor(Model => Model.Name)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.Grade, "Grade")
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(Model => Model.Grade)
+                        </td>
+                        <td style="color:white">
+                            @Html.ValidationMessageFor(Model => Model.Grade)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.PhoneNumber, "PhoneNumber")
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(Model => Model.PhoneNumber)
+                        </td>
+                        <td style="color:white">
+                            @Html.ValidationMessageFor(Model => Model.PhoneNumber)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.EmailID, "EmailID")
+                        </td>
+                        <td>
+                            @Html.TextBoxFor(Model => Model.EmailID)
+                        </td>
+                        <td style="color:white">
+                            @Html.ValidationMessageFor(Model => Model.EmailID)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.Password, "Password")
+                        </td>
+                        <td>
+                            @Html.PasswordFor(Model => Model.Password)
+                        </td>
+                        <td style="color:white">
+                            @Html.ValidationMessageFor(Model => Model.Password)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @Html.LabelFor(Model => Model.RoleId, "RoleId")
+                        </td>
+                        <td>
+                            @Html.DropDownListFor(Model => Model.RoleId, ViewBag.Roles as IEnumerable<SelectListItem>)
+                        </td>
+                        <td style="color:white">
+                            @Html.ValidationMessageFor(Model => Model.RoleId)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" value="Submit" />
+                        </td>
+                        <td>
+                            <a href="~/Account/Display">Back</a>
+                        </td>
+                        <td>
+                            @Html.ActionLink("Display", "Display", "Account")
+                        </td>
+
+                    </tr>
+                </table>
+            }
+         
+    </body>
+

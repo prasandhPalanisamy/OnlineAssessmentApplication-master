@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Online_Assessment_Project.ViewModel.TestViewModel>
+
+@{
+    ViewBag.Title = "DisplayAvailableTest";
+}
+
+<h2>DisplayAvailableTest</h2>
+
+<p>
+    @Html.ActionLink("Create", "CreateTest", "Test", new { @class = "btn btn-primary" })
+</p>
+
+@using (Html.BeginForm("DisplayQuestions", "Questions", FormMethod.Get))
+{
+    @Html.TextBox("search")
+    <input type="submit" value="Filter" />
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.TestId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TestName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EndTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Grade)
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TestName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Grade)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Display", "Test", new { @class = "btn btn-primary" })
+                @Html.ActionLink("Delete", "Display", "Test", new { @class = "btn btn-primary" })
+            </td>
+        </tr>
+    }
+
+
+</table>
+
+
