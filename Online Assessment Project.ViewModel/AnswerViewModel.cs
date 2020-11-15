@@ -13,8 +13,6 @@ namespace Online_Assessment_Project.ViewModel
     {
         public int AnswerId { get; set; }
         public int QuestionId { get; set; }
-        [ForeignKey("QuestionId")]
-        public Questions Questions { get; set; }
         [Required (ErrorMessage ="Answer Label is Required")]
         public char AnswerLable { get; set; }
         [Required(ErrorMessage = "Description is Required")]

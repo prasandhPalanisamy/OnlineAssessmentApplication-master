@@ -17,20 +17,31 @@ namespace Online_Assessment_Project.Controllers
             questionService = new QuestionServices();
         }
         // GET: Question
-        public ActionResult CreateQuestions(int testId)
+        public ActionResult CreateQuestions()
         {
-            return View(testId);
+            
+            return View();
         }
         [HttpPost]
         [ActionName("CreateQuestions")]
-        public ActionResult SaveQuestions(QuestionsViewModel newQuestion)
+        public ActionResult SaveQuestions(QuestionsViewModel newQuestion, string Command)
         {
-            newQuestion.TestId = Convert.ToInt32(Session["TestId"]);
+            newQuestion.TestId = (int)TempData.Peek("MyData");
+            int questionId = 0;
             if (ModelState.IsValid)
             {
-                questionService.InsertQuestion(newQuestion);
+                questionId = questionService.InsertQuestion(newQuestion);
+                TempData["QuestionId"] = questionId;
+                if (Command == "Create Options")
+                {
+                    return RedirectToAction("CreateAnswer", "Answer");
+                }
+                else if (Command == "Submit")
+                {
+                    return RedirectToAction("DisplayQuestions", "Questions");
+                }
             }
-            return RedirectToAction("CreateAnswer", "Answer");
+            return View();
         }
         public ActionResult DisplayQuestions(int testId)
         {            

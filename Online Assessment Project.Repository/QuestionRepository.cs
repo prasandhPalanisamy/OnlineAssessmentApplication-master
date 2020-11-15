@@ -9,7 +9,7 @@ namespace Online_Assessment_Project.Repository
 {
     public interface IQuestionRepository
     {
-        void InsertQuestion(Questions question);
+        int InsertQuestion(Questions question);
         //void EditQuestion(Questions question);
         //void DeleteQuestion(int questionID);
         //List<Questions> GetQuestions();
@@ -23,11 +23,14 @@ namespace Online_Assessment_Project.Repository
         {
             db = new AssessmentPortalDbContext();
         }
-        public void InsertQuestion(Questions question)
+        public int InsertQuestion(Questions question)
         {
+
             question.CreateTime = DateTime.Now.ToString();
             db.Questions.Add(question);
             db.SaveChanges();
+            return question.QuestionId;
+            
         }
         //public void EditQuestion(Questions question)
         //{

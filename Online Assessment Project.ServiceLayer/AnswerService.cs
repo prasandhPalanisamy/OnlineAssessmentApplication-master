@@ -27,7 +27,7 @@ namespace Online_Assessment_Project.ServiceLayer
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<AnswerViewModel, Answer>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             Answer answer = mapper.Map<AnswerViewModel, Answer>(answerView);
-            answerRepository.InsertAnswer(answer);
+             answerRepository.InsertAnswer(answer);
         }
         public List<AnswerViewModel> GetAnswersByQuestionID(int questionID)
         {            

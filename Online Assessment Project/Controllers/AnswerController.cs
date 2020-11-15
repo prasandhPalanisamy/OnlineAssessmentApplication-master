@@ -21,13 +21,23 @@ namespace Online_Assessment_Project.Controllers
             return View();
         }
         [HttpPost]
-        public ActionResult CreateAnswer(AnswerViewModel answerView)
+        public ActionResult CreateAnswer(AnswerViewModel answerView, string command)
         {
+            answerView.QuestionId = (int)TempData.Peek("QuestionId");
             if (ModelState.IsValid)
             {
-                answerService.InsertAnswer(answerView); 
-            }   
-            return View();
+                answerService.InsertAnswer(answerView);
+                if (command == "Add")
+                {
+                   return RedirectToAction("CreateAnswer", "Answer");
+                }
+                else if(command == "Submit")
+                {
+                    return RedirectToAction("CreateQuestions", "Question");
+                }
+            }
+            
+                return View();
         }
     }
 }

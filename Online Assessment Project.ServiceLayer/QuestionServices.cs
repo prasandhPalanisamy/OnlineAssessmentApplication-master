@@ -12,7 +12,7 @@ namespace Online_Assessment_Project.ServiceLayer
 {
     interface IQuestionServices
     {
-        void InsertQuestion(QuestionsViewModel createQuestionsViewModel);
+        int InsertQuestion(QuestionsViewModel createQuestionsViewModel);
         //void EditQuestion(QuestionsViewModel editQuestionsViewModel);
         //void DeleteQuestion(int questionID);
         //List<QuestionsViewModel> GetQuestions();
@@ -26,12 +26,12 @@ namespace Online_Assessment_Project.ServiceLayer
         {
             questionRepository = new QuestionRepository();
         }
-        public void InsertQuestion(QuestionsViewModel QuestionsViewModel)
+        public int InsertQuestion(QuestionsViewModel QuestionsViewModel)
         {
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<QuestionsViewModel, Questions>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             Questions question = mapper.Map<QuestionsViewModel, Questions>(QuestionsViewModel);
-            questionRepository.InsertQuestion(question);
+            return questionRepository.InsertQuestion(question);
 
         }
         //public void EditQuestion(QuestionsViewModel editQuestionsViewModel)

@@ -7,7 +7,7 @@
 <h2>DisplayQuestions</h2>
 
 <p>
-    @Html.ActionLink("Create", "CreateQuestions", "Question", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Create", "CreateQuestions", "Questions", new { @class = "btn btn-primary" })
 </p>
 
     @using (Html.BeginForm("DisplayQuestions", "Questions", FormMethod.Get))
@@ -47,8 +47,8 @@
                 </td>
                 
                 <td>
-                    @Html.ActionLink("Edit", "Display", "Test", new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Delete", "Display", "Test", new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "Display", "Questions", new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Delete", "Display", "Questions", new { @class = "btn btn-primary" })
                 </td>
             </tr>
         }

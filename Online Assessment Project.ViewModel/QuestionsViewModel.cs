@@ -15,8 +15,7 @@ namespace Online_Assessment_Project.ViewModel
         [Required(ErrorMessage = "Question name is required")]
         public string Question { get; set; }
         public int TestId { get; set; }
-        [ForeignKey("TestId")]
-        public Test Test { get; set; }
+        
 
     }
 

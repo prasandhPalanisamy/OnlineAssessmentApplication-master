@@ -35,8 +35,8 @@ namespace Online_Assessment_Project.Controllers
                 testId = testServices.CreateNewTest(newTest);
                 
             }
-            Session["TestId"] = testId;
-            return RedirectToAction("CreateQuestions", "Question", new {id = testId });
+            TempData["MyData"] = testId;
+            return RedirectToAction("CreateQuestions", "Question");
         }
         public ActionResult DisplayAvailableTest()
         {

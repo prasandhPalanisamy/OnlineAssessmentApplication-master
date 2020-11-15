@@ -4,11 +4,9 @@
     ViewBag.Title = "CreateQuestions";
 }
 
-
 <div class="container">
     @using (Html.BeginForm("CreateQuestions", "Question", FormMethod.Post))
     {
-        @Html.HiddenFor(model => model.TestId)
     <div class="col-sm-12">
         <div class="title" style="">CreateQuestions</div>
         <div class="form-row">
@@ -19,7 +17,16 @@
         </div>
         
         <div class="col-md-12">
-            <input type="submit" value="Create Questions" class="btn-dark" />
+            <table>
+                <tr>
+                    <th>
+                        <input type="submit" name="Command" value="Create Options" class="btn-dark" />
+                    </th>
+                    <th>
+                        <input type="submit" name="Command" value="Submit" class="btn-dark" />
+                    </th>
+                </tr>
+            </table>
         </div>   
             
     </div>

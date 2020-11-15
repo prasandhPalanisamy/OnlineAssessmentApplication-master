@@ -18,7 +18,7 @@ namespace Online_Assessment_Project.DomainModel
         public string ModifiedTime { get; set; }
         public int TestId { get; set; }
         [ForeignKey("TestId")]
-        public virtual Test Test { get; set; }
+        public Test Test { get; set; }
 
     }
 
