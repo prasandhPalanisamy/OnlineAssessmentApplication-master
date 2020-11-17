@@ -29,13 +29,33 @@ namespace Online_Assessment_Project.ServiceLayer
             Answer answer = mapper.Map<AnswerViewModel, Answer>(answerView);
              answerRepository.InsertAnswer(answer);
         }
-        public List<AnswerViewModel> GetAnswersByQuestionID(int questionID)
-        {            
-            List<Answer> ans =  answerRepository.GetAnswersByQuestionID(questionID);
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<List<Answer>, List<AnswerViewModel>>(); cfg.IgnoreUnmapped(); });
+        public IEnumerable<AnswerViewModel> DisplayAnswers(int questionId)
+        {
+            IEnumerable<Answer> answers = answerRepository.DisplayAnswers(questionId);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Answer, AnswerViewModel>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
-            List<AnswerViewModel> answer = mapper.Map<List<Answer>,List<AnswerViewModel>>(ans);
-            return answer;
+            IEnumerable<AnswerViewModel> allAnswers = mapper.Map<IEnumerable<Answer>, IEnumerable<AnswerViewModel>>(answers);
+            return allAnswers;
+        }
+        public void EditAnswer(AnswerViewModel editedData)
+        {
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<AnswerViewModel, Answer>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            Answer editAnswer = mapper.Map<AnswerViewModel, Answer>(editedData);
+            answerRepository.EditAnswer(editAnswer);
+        }
+        public void DeleteAnswer(int questionId)
+        {
+            answerRepository.DeleteAnswer(questionId);
+        }
+
+        public AnswerViewModel GetAnswersByQuestionID(int questionID)
+        {            
+            Answer answer =  answerRepository.GetAnswersByQuestionID(questionID);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Answer, AnswerViewModel>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            AnswerViewModel OriginalData = mapper.Map<Answer, AnswerViewModel>(answer);
+            return OriginalData;
         }
     }
 

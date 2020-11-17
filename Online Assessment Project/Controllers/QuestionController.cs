@@ -18,8 +18,7 @@ namespace Online_Assessment_Project.Controllers
         }
         // GET: Question
         public ActionResult CreateQuestions()
-        {
-            
+        {            
             return View();
         }
         [HttpPost]
@@ -38,7 +37,7 @@ namespace Online_Assessment_Project.Controllers
                 }
                 else if (Command == "Submit")
                 {
-                    return RedirectToAction("DisplayQuestions", "Questions");
+                    return RedirectToAction("DisplayQuestions",new { testId = newQuestion.TestId });
                 }
             }
             return View();
@@ -48,5 +47,28 @@ namespace Online_Assessment_Project.Controllers
             IEnumerable<QuestionsViewModel> questions = questionService.DisplayAllDetails(testId);
             return View(questions);
         }
+
+        public ActionResult EditQuestion(int questionId)
+        {
+            QuestionsViewModel questions = questionService.GetQuestionsByTestId(questionId);
+            return View(questions);
+        }
+        [HttpPost]
+        public ActionResult EditQuestion(QuestionsViewModel editedData)
+        {
+            editedData.TestId = (int)TempData.Peek("MyData");
+            if (ModelState.IsValid)
+            {
+                questionService.EditQuestion(editedData);
+                return RedirectToAction("DisplayQuestions");
+            }
+            return View();
+        }
+        public ActionResult DeleteQuestion(int question)
+        {
+            questionService.DeleteQuestion(question);
+            return RedirectToAction("DisplayQuestions");
+        }
+
     }
 }

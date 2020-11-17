@@ -13,10 +13,10 @@ namespace Online_Assessment_Project.ServiceLayer
     interface IQuestionServices
     {
         int InsertQuestion(QuestionsViewModel createQuestionsViewModel);
-        //void EditQuestion(QuestionsViewModel editQuestionsViewModel);
-        //void DeleteQuestion(int questionID);
-        //List<QuestionsViewModel> GetQuestions();
-        List<QuestionsViewModel> GetQuestionsByTestID(int testID);
+        void EditQuestion(QuestionsViewModel editData);
+        void DeleteQuestion(int questionID);
+        QuestionsViewModel GetQuestionsByTestId(int questionID);
+        IEnumerable<QuestionsViewModel> DisplayAllDetails(int testId);
 
     }
     public class QuestionServices : IQuestionServices
@@ -32,34 +32,25 @@ namespace Online_Assessment_Project.ServiceLayer
             IMapper mapper = config.CreateMapper();
             Questions question = mapper.Map<QuestionsViewModel, Questions>(QuestionsViewModel);
             return questionRepository.InsertQuestion(question);
-
         }
-        //public void EditQuestion(QuestionsViewModel editQuestionsViewModel)
-        //{
-        //    var config = new MapperConfiguration(cfg => { cfg.CreateMap<QuestionsViewModel, Questions>(); cfg.IgnoreUnmapped(); });
-        //    IMapper mapper = config.CreateMapper();
-        //    Questions question = mapper.Map<QuestionsViewModel, Questions>(editQuestionsViewModel);
-        //    questionRepository.EditQuestion(question);
-        //}
-        //public void DeleteQuestion(int questionID)
-        //{
-        //    questionRepository.DeleteQuestion(questionID);
-        //}
-        //public List<QuestionsViewModel> GetQuestions()
-        //{
-        //    List<Questions> questionList = questionRepository.GetQuestions();
-        //    var config = new MapperConfiguration(cfg => { cfg.CreateMap<Questions, QuestionsViewModel>(); cfg.IgnoreUnmapped(); });
-        //    IMapper mapper = config.CreateMapper();
-        //    List<QuestionsViewModel> questionvm = mapper.Map<List<Questions>, List<QuestionsViewModel>>(questionList);
-        //    return questionvm;
-        //}
-        public List<QuestionsViewModel> GetQuestionsByTestID(int testID)
+        public void EditQuestion(QuestionsViewModel editData)
         {
-            List<Questions> questions = questionRepository.GetQuestionsByTestID(testID);
-            var config = new MapperConfiguration(cfg => { cfg.CreateMap<List<Questions>,List<QuestionsViewModel>>(); cfg.IgnoreUnmapped(); });
-            IMapper mapper = config.CreateMapper(); 
-             return mapper.Map<List<Questions>, List<QuestionsViewModel>>(questions);
-           // return question;
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<QuestionsViewModel, Questions>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            Questions editQuestion = mapper.Map<QuestionsViewModel, Questions>(editData);
+            questionRepository.EditQuestion(editQuestion);
+        }
+        public void DeleteQuestion(int questionID)
+        {
+            questionRepository.DeleteQuestion(questionID);
+        }
+        public QuestionsViewModel GetQuestionsByTestId(int questionID)
+        {
+            Questions question = questionRepository.GetQuestionsByTestId(questionID);
+            var config = new MapperConfiguration(cfg => { cfg.CreateMap<Questions, QuestionsViewModel>(); cfg.IgnoreUnmapped(); });
+            IMapper mapper = config.CreateMapper();
+            QuestionsViewModel OriginalData = mapper.Map<Questions, QuestionsViewModel>(question);
+            return OriginalData;
         }
         public IEnumerable<QuestionsViewModel> DisplayAllDetails(int testId)
         {
@@ -70,7 +61,6 @@ namespace Online_Assessment_Project.ServiceLayer
             return allQuestions;
         }
     }
-
 } 
 
     

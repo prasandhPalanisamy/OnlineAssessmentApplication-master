@@ -12,7 +12,7 @@ namespace Online_Assessment_Project.ViewModel
     {
         public int UserId { get; set; }
         [System.ComponentModel.DataAnnotations.Schema.ForeignKey("UserId")]
-        public User User { get; set; }
+        
         public int TestId { get; set; }
         [Required]
         [Display(Name = "Name of the Test")]

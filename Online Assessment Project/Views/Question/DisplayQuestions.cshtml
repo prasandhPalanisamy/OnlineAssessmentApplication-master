@@ -7,20 +7,18 @@
 <h2>DisplayQuestions</h2>
 
 <p>
-    @Html.ActionLink("Create", "CreateQuestions", "Questions", new { @class = "btn btn-primary" })
+    @Html.ActionLink("Add Question", "CreateQuestions", "Question", new { @class = "btn btn-primary" })
 </p>
 
-    @using (Html.BeginForm("DisplayQuestions", "Questions", FormMethod.Get))
+    @using (Html.BeginForm("DisplayQuestions", "Question", FormMethod.Get))
     {
         @Html.TextBox("search")
         <input type="submit" value="Filter" />
     }
 
     <table class="table">
-        <tr>
-            
+        <tr>            
             <th>
-
                 @Html.DisplayNameFor(model => model.QuestionID)
             </th>
             <th>
@@ -47,8 +45,8 @@
                 </td>
                 
                 <td>
-                    @Html.ActionLink("Edit", "Display", "Questions", new { @class = "btn btn-primary" })
-                    @Html.ActionLink("Delete", "Display", "Questions", new { @class = "btn btn-primary" })
+                    @Html.ActionLink("Edit", "EditQuestion", new { questionId = item.QuestionID })
+                    @Html.ActionLink("Delete", "DeleteQuestion", new { questionId = item.QuestionID })
                 </td>
             </tr>
         }

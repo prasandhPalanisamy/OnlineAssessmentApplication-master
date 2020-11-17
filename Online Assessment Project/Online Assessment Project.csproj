@@ -294,6 +294,7 @@
     <Content Include="Views\Question\CreateQuestions.cshtml" />
     <Content Include="Views\Answer\CreateAnswer.cshtml" />
     <Content Include="Views\Question\DisplayQuestions.cshtml" />
+    <Content Include="Views\Question\EditQuestion.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

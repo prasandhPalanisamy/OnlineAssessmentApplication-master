@@ -39,5 +39,33 @@ namespace Online_Assessment_Project.Controllers
             
                 return View();
         }
+        public ActionResult EditAnswer(int answerId)
+        {
+
+            AnswerViewModel answer = answerService.GetAnswersByQuestionID(answerId);
+            return View(answer);
+        }
+        [HttpPost]
+        public ActionResult EditAnswer(AnswerViewModel editedData)
+        {
+            if (ModelState.IsValid)
+            {
+                answerService.EditAnswer(editedData);
+                return RedirectToAction("DisplayAvailableTest");
+            }
+            return View();
+
+        }
+        public ActionResult DeleteAnswer(int answerId)
+        {
+
+            answerService.DeleteAnswer(answerId);
+            return RedirectToAction("DisplayAvailableTest");
+        }
+        public ActionResult DisplayAvailableTest(int questionId)
+        {
+            IEnumerable<AnswerViewModel> answers = answerService.DisplayAnswers(questionId);
+            return View(answers);
+        }
     }
 }
