@@ -56,19 +56,19 @@ namespace Online_Assessment_Project.Controllers
         [HttpPost]
         public ActionResult EditQuestion(QuestionsViewModel editedData)
         {
-            editedData.TestId = (int)TempData.Peek("MyData");
+            //editedData.TestId = (int)TempData.Peek("MyData");
             if (ModelState.IsValid)
             {
                 questionService.EditQuestion(editedData);
-                return RedirectToAction("DisplayQuestions");
+                return RedirectToAction("DisplayQuestions", new {testId = editedData.TestId});
             }
             return View();
         }
-        public ActionResult DeleteQuestion(int question)
+        public ActionResult DeleteQuestion(int questionId)
         {
-            questionService.DeleteQuestion(question);
-            return RedirectToAction("DisplayQuestions");
+            int TestId = (int)TempData.Peek("MyData");
+            questionService.DeleteQuestion(questionId);
+            return RedirectToAction("DisplayQuestions", new { testId = TestId });
         }
-
     }
 }

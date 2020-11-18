@@ -10,7 +10,9 @@
     {
         <div class="col-sm-12">
             <div class="createtestform">
-               
+               @Html.HiddenFor(Model => Model.QuestionID)
+               @Html.HiddenFor(Model => Model.TestId)
+                @*@Html.TextBoxFor(Model => Model.TestId)*@
                 <div class="title">Update Question</div>
                 <div class="form-row">
                     @Html.LabelFor(Model => Model.Question)

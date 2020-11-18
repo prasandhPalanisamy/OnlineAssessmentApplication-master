@@ -34,7 +34,7 @@ namespace Online_Assessment_Project.Repository
         public void EditQuestion(Questions editQuestion)
         {
 
-            Questions question = db.Questions.Find(editQuestion.TestId);
+            Questions question = db.Questions.Find(editQuestion.QuestionId);
             if (question != null)
             {
                 question.TestId = editQuestion.TestId;
