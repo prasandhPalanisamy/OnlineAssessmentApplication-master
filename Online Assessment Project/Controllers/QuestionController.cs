@@ -25,7 +25,8 @@ namespace Online_Assessment_Project.Controllers
         [ActionName("CreateQuestions")]
         public ActionResult SaveQuestions(QuestionsViewModel newQuestion, string Command)
         {
-            newQuestion.TestId = (int)TempData.Peek("MyData");
+            newQuestion.TestId = (int)TempData.Peek("TestId");
+            TempData["TestId"] = newQuestion.TestId;
             int questionId = 0;
             if (ModelState.IsValid)
             {
@@ -35,15 +36,13 @@ namespace Online_Assessment_Project.Controllers
                 {
                     return RedirectToAction("CreateAnswer", "Answer");
                 }
-                else if (Command == "Submit")
-                {
-                    return RedirectToAction("DisplayQuestions",new { testId = newQuestion.TestId });
-                }
+                
             }
             return View();
         }
         public ActionResult DisplayQuestions(int testId)
-        {            
+        {
+            
             IEnumerable<QuestionsViewModel> questions = questionService.DisplayAllDetails(testId);
             return View(questions);
         }
@@ -66,7 +65,7 @@ namespace Online_Assessment_Project.Controllers
         }
         public ActionResult DeleteQuestion(int questionId)
         {
-            int TestId = (int)TempData.Peek("MyData");
+            int TestId = (int)TempData.Peek("TestId");
             questionService.DeleteQuestion(questionId);
             return RedirectToAction("DisplayQuestions", new { testId = TestId });
         }

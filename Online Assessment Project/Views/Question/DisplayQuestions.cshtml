@@ -12,12 +12,11 @@
 
     @using (Html.BeginForm("DisplayQuestions", "Question", FormMethod.Get))
     {
-        @Html.TextBox("search")
-        <input type="submit" value="Filter" />
+       
     }
 
     <table class="table">
-        <tr>            
+        <tr>
             <th>
                 @Html.DisplayNameFor(model => model.QuestionID)
             </th>
@@ -30,25 +29,31 @@
             <th>
                 Action
             </th>
+            <th>
+                Options
+            </th>
         </tr>
         @foreach (var item in Model)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.QuestionID)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Question)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.TestId)
-                </td>
-                
-                <td>
-                    @Html.ActionLink("Edit", "EditQuestion", new { questionId = item.QuestionID })
-                    @Html.ActionLink("Delete", "DeleteQuestion", new { questionId = item.QuestionID })
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.QuestionID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Question)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TestId)
+        </td>
+
+        <td>
+            @Html.ActionLink("Edit", "EditQuestion", new { questionId = item.QuestionID })
+            @Html.ActionLink("Delete", "DeleteQuestion", new { questionId = item.QuestionID })
+        </td>
+        <td>
+            @Html.ActionLink("View Options","DisplayAnswers", "Answer", new { questionId = item.QuestionID , testId = item.TestId },null)
+        </td>
+    </tr>
         }
 
 

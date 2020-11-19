@@ -16,10 +16,10 @@ namespace Online_Assessment_Project.DomainModel
         public int QuestionId { get; set; }
         [ForeignKey("QuestionId")]
         public virtual Questions Questions { get; set; }
-        public char AnswerLable { get; set; }
+        public string AnswerLable { get; set; }
         public string Description { get; set; }
         public decimal Mark { get; set; }
-        public byte IsCorrect { get; set; }
+        public bool IsCorrect { get; set; }
     }
 
 

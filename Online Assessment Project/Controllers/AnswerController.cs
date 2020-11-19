@@ -41,29 +41,31 @@ namespace Online_Assessment_Project.Controllers
         }
         public ActionResult EditAnswer(int answerId)
         {
-
             AnswerViewModel answer = answerService.GetAnswersByQuestionID(answerId);
             return View(answer);
         }
         [HttpPost]
         public ActionResult EditAnswer(AnswerViewModel editedData)
         {
+            int TestId = (int)TempData.Peek("TestId");
             if (ModelState.IsValid)
             {
                 answerService.EditAnswer(editedData);
-                return RedirectToAction("DisplayAvailableTest");
+                return RedirectToAction("DisplayAnswers", new { questionId = editedData.QuestionId, testId = TestId });
             }
             return View();
 
         }
         public ActionResult DeleteAnswer(int answerId)
         {
-
+            int TestId = (int)TempData.Peek("TestId"); 
+            int QuestionId = (int)TempData.Peek("QuestionId");
             answerService.DeleteAnswer(answerId);
-            return RedirectToAction("DisplayAvailableTest");
+            return RedirectToAction("DisplayAnswers", new { questionId = QuestionId, testId = TestId});
         }
-        public ActionResult DisplayAvailableTest(int questionId)
+        public ActionResult DisplayAnswers(int questionId , int testId)
         {
+            ViewData["TestId"] = (int)testId;
             IEnumerable<AnswerViewModel> answers = answerService.DisplayAnswers(questionId);
             return View(answers);
         }

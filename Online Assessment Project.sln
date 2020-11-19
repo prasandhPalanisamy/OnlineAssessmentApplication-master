@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Online Assessment Project.S
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Online Assessment Project.Repository", "Online Assessment Project.Repository\Online Assessment Project.Repository.csproj", "{331C807A-D6C5-412E-AEDF-90C0E5522DC1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineAssessmentApplication.UnitTesting", "OnlineAssessmentApplication.UnitTesting\OnlineAssessmentApplication.UnitTesting.csproj", "{BF6AC125-6BE8-4362-84D6-DFA555644D27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{331C807A-D6C5-412E-AEDF-90C0E5522DC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{331C807A-D6C5-412E-AEDF-90C0E5522DC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{331C807A-D6C5-412E-AEDF-90C0E5522DC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF6AC125-6BE8-4362-84D6-DFA555644D27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF6AC125-6BE8-4362-84D6-DFA555644D27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF6AC125-6BE8-4362-84D6-DFA555644D27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF6AC125-6BE8-4362-84D6-DFA555644D27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

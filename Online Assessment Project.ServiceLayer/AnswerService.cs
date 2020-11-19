@@ -44,14 +44,14 @@ namespace Online_Assessment_Project.ServiceLayer
             Answer editAnswer = mapper.Map<AnswerViewModel, Answer>(editedData);
             answerRepository.EditAnswer(editAnswer);
         }
-        public void DeleteAnswer(int questionId)
+        public void DeleteAnswer(int answerId)
         {
-            answerRepository.DeleteAnswer(questionId);
+            answerRepository.DeleteAnswer(answerId);
         }
 
-        public AnswerViewModel GetAnswersByQuestionID(int questionID)
+        public AnswerViewModel GetAnswersByQuestionID(int answerId)
         {            
-            Answer answer =  answerRepository.GetAnswersByQuestionID(questionID);
+            Answer answer =  answerRepository.GetAnswersByQuestionID(answerId);
             var config = new MapperConfiguration(cfg => { cfg.CreateMap<Answer, AnswerViewModel>(); cfg.IgnoreUnmapped(); });
             IMapper mapper = config.CreateMapper();
             AnswerViewModel OriginalData = mapper.Map<Answer, AnswerViewModel>(answer);

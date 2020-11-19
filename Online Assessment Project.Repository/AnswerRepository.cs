@@ -29,8 +29,8 @@ namespace Online_Assessment_Project.Repository
         }
         public void EditAnswer(Answer editAnswer)
         {
-            Answer answer = db.Answers.Find(GetAnswersByQuestionID(editAnswer.QuestionId));
-            if(editAnswer != null)
+            Answer answer = db.Answers.Find(editAnswer.AnswerId);
+            if(answer != null)
             {
                 answer.AnswerId = editAnswer.AnswerId;
                 answer.AnswerLable = editAnswer.AnswerLable;
@@ -45,13 +45,13 @@ namespace Online_Assessment_Project.Repository
             db.Answers.Remove(GetAnswersByQuestionID(answerId));
             db.SaveChanges();
         }
-        public Answer GetAnswersByQuestionID(int questionId)
+        public Answer GetAnswersByQuestionID(int answerId)
         {
-            return db.Answers.Find(questionId);
+            return db.Answers.Find(answerId);
         }
         public IEnumerable<Answer> DisplayAnswers(int questionId)
         {
-            IEnumerable<Answer> allAnswers = db.Answers.OrderBy(answer => answer.AnswerId).ToList();
+            IEnumerable<Answer> allAnswers = db.Answers.Where(answer => answer.QuestionId == questionId).ToList();
             return allAnswers;
         }
     }

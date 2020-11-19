@@ -21,7 +21,6 @@ namespace Online_Assessment_Project.Controllers
         // GET: Test
         public ActionResult CreateTest()
         {
-
             return View();
         }
         [HttpPost]
@@ -32,10 +31,9 @@ namespace Online_Assessment_Project.Controllers
             int testId = 0;
             if (ModelState.IsValid)
             {
-                testId = testServices.CreateNewTest(newTest);
-                
+                testId = testServices.CreateNewTest(newTest);                
             }
-            TempData["MyData"] = testId;
+            TempData["TestId"] = testId;
             return RedirectToAction("CreateQuestions", "Question");
         }
         public ActionResult DisplayAvailableTest()

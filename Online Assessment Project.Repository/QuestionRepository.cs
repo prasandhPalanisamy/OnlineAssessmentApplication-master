@@ -33,7 +33,6 @@ namespace Online_Assessment_Project.Repository
 
         public void EditQuestion(Questions editQuestion)
         {
-
             Questions question = db.Questions.Find(editQuestion.QuestionId);
             if (question != null)
             {
@@ -45,14 +44,14 @@ namespace Online_Assessment_Project.Repository
                 db.SaveChanges();
             }
         }
-        public void DeleteQuestion(int testId)
+        public void DeleteQuestion(int questionId)
         {
-            db.Questions.Remove(GetQuestionsByTestId(testId));
+            db.Questions.Remove(GetQuestionsByTestId(questionId));
             db.SaveChanges();
         }
-        public Questions GetQuestionsByTestId(int testId)
+        public Questions GetQuestionsByTestId(int questionId)
         {
-            return db.Questions.Find(testId);
+            return db.Questions.Find(questionId);
         }
                
         public IEnumerable<Questions> DisplayAllQuestions(int testId)
