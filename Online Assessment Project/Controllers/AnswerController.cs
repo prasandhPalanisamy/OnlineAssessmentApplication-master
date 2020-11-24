@@ -58,6 +58,7 @@ namespace Online_Assessment_Project.Controllers
         }
         public ActionResult DeleteAnswer(int answerId)
         {
+            //int
             int TestId = (int)TempData.Peek("TestId"); 
             int QuestionId = (int)TempData.Peek("QuestionId");
             answerService.DeleteAnswer(answerId);
